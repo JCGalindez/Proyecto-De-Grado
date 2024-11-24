@@ -1,0 +1,134 @@
+# Proyecto-De-Grado
+Usuario: 12345      Contraseña: admin
+
+USE [master]
+GO
+/****** Object:  Database [Bd_nominaplus]    Script Date: 23/11/2024 12:42:57 a. m. ******/
+CREATE DATABASE [Bd_nominaplus]
+ CONTAINMENT = NONE
+ ON  PRIMARY 
+( NAME = N'Bd_nominaplus', FILENAME = N'C:\Program Files\Microsoft SQL Server\MSSQL16.MSSQLSERVER\MSSQL\DATA\Bd_nominaplus.mdf' , SIZE = 8192KB , MAXSIZE = UNLIMITED, FILEGROWTH = 65536KB )
+ LOG ON 
+( NAME = N'Bd_nominaplus_log', FILENAME = N'C:\Program Files\Microsoft SQL Server\MSSQL16.MSSQLSERVER\MSSQL\DATA\Bd_nominaplus_log.ldf' , SIZE = 8192KB , MAXSIZE = 2048GB , FILEGROWTH = 65536KB )
+ WITH CATALOG_COLLATION = DATABASE_DEFAULT, LEDGER = OFF
+GO
+ALTER DATABASE [Bd_nominaplus] SET COMPATIBILITY_LEVEL = 160
+GO
+IF (1 = FULLTEXTSERVICEPROPERTY('IsFullTextInstalled'))
+begin
+EXEC [Bd_nominaplus].[dbo].[sp_fulltext_database] @action = 'enable'
+end
+GO
+ALTER DATABASE [Bd_nominaplus] SET ANSI_NULL_DEFAULT OFF 
+GO
+ALTER DATABASE [Bd_nominaplus] SET ANSI_NULLS OFF 
+GO
+ALTER DATABASE [Bd_nominaplus] SET ANSI_PADDING OFF 
+GO
+ALTER DATABASE [Bd_nominaplus] SET ANSI_WARNINGS OFF 
+GO
+ALTER DATABASE [Bd_nominaplus] SET ARITHABORT OFF 
+GO
+ALTER DATABASE [Bd_nominaplus] SET AUTO_CLOSE OFF 
+GO
+ALTER DATABASE [Bd_nominaplus] SET AUTO_SHRINK OFF 
+GO
+ALTER DATABASE [Bd_nominaplus] SET AUTO_UPDATE_STATISTICS ON 
+GO
+ALTER DATABASE [Bd_nominaplus] SET CURSOR_CLOSE_ON_COMMIT OFF 
+GO
+ALTER DATABASE [Bd_nominaplus] SET CURSOR_DEFAULT  GLOBAL 
+GO
+ALTER DATABASE [Bd_nominaplus] SET CONCAT_NULL_YIELDS_NULL OFF 
+GO
+ALTER DATABASE [Bd_nominaplus] SET NUMERIC_ROUNDABORT OFF 
+GO
+ALTER DATABASE [Bd_nominaplus] SET QUOTED_IDENTIFIER OFF 
+GO
+ALTER DATABASE [Bd_nominaplus] SET RECURSIVE_TRIGGERS OFF 
+GO
+ALTER DATABASE [Bd_nominaplus] SET  DISABLE_BROKER 
+GO
+ALTER DATABASE [Bd_nominaplus] SET AUTO_UPDATE_STATISTICS_ASYNC OFF 
+GO
+ALTER DATABASE [Bd_nominaplus] SET DATE_CORRELATION_OPTIMIZATION OFF 
+GO
+ALTER DATABASE [Bd_nominaplus] SET TRUSTWORTHY OFF 
+GO
+ALTER DATABASE [Bd_nominaplus] SET ALLOW_SNAPSHOT_ISOLATION OFF 
+GO
+ALTER DATABASE [Bd_nominaplus] SET PARAMETERIZATION SIMPLE 
+GO
+ALTER DATABASE [Bd_nominaplus] SET READ_COMMITTED_SNAPSHOT OFF 
+GO
+ALTER DATABASE [Bd_nominaplus] SET HONOR_BROKER_PRIORITY OFF 
+GO
+ALTER DATABASE [Bd_nominaplus] SET RECOVERY FULL 
+GO
+ALTER DATABASE [Bd_nominaplus] SET  MULTI_USER 
+GO
+ALTER DATABASE [Bd_nominaplus] SET PAGE_VERIFY CHECKSUM  
+GO
+ALTER DATABASE [Bd_nominaplus] SET DB_CHAINING OFF 
+GO
+ALTER DATABASE [Bd_nominaplus] SET FILESTREAM( NON_TRANSACTED_ACCESS = OFF ) 
+GO
+ALTER DATABASE [Bd_nominaplus] SET TARGET_RECOVERY_TIME = 60 SECONDS 
+GO
+ALTER DATABASE [Bd_nominaplus] SET DELAYED_DURABILITY = DISABLED 
+GO
+ALTER DATABASE [Bd_nominaplus] SET ACCELERATED_DATABASE_RECOVERY = OFF  
+GO
+EXEC sys.sp_db_vardecimal_storage_format N'Bd_nominaplus', N'ON'
+GO
+ALTER DATABASE [Bd_nominaplus] SET QUERY_STORE = ON
+GO
+ALTER DATABASE [Bd_nominaplus] SET QUERY_STORE (OPERATION_MODE = READ_WRITE, CLEANUP_POLICY = (STALE_QUERY_THRESHOLD_DAYS = 30), DATA_FLUSH_INTERVAL_SECONDS = 900, INTERVAL_LENGTH_MINUTES = 60, MAX_STORAGE_SIZE_MB = 1000, QUERY_CAPTURE_MODE = AUTO, SIZE_BASED_CLEANUP_MODE = AUTO, MAX_PLANS_PER_QUERY = 200, WAIT_STATS_CAPTURE_MODE = ON)
+GO
+USE [Bd_nominaplus]
+GO
+/****** Object:  Table [dbo].[Empleados]    Script Date: 23/11/2024 12:42:57 a. m. ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Empleados](
+	[Id] [bigint] NOT NULL,
+	[Nombre] [varchar](50) NOT NULL,
+	[Apellido] [varchar](50) NOT NULL,
+	[Edad] [int] NULL,
+	[Email] [varchar](60) NULL,
+	[Cargo] [varchar](40) NULL,
+	[Salario] [bigint] NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Usuarios]    Script Date: 23/11/2024 12:42:57 a. m. ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Usuarios](
+	[Id] [bigint] NOT NULL,
+	[Nombre] [varchar](50) NULL,
+	[Email] [varchar](50) NULL,
+	[Password] [varchar](256) NULL,
+	[Cargo] [varchar](50) NULL,
+ CONSTRAINT [PK_Usuarios] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+INSERT [dbo].[Empleados] ([Id], [Nombre], [Apellido], [Edad], [Email], [Cargo], [Salario]) VALUES (123, N'qwe', N'asd', 13, N'asd', N'Tecnico', 3500000)
+GO
+INSERT [dbo].[Usuarios] ([Id], [Nombre], [Email], [Password], [Cargo]) VALUES (12345, N'admin', N'admin@gmail.com', N'8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918', N'Contador')
+INSERT [dbo].[Usuarios] ([Id], [Nombre], [Email], [Password], [Cargo]) VALUES (1114840233, N'Juan Carlos Galindez Torres', N'Galindez.contact@gmail.com', N'7d3e201d8c281f9dfa0eb95ac6dc888be6eecef0ae3427c7cf35d089752aec2b', N'Administrador')
+GO
+USE [master]
+GO
+ALTER DATABASE [Bd_nominaplus] SET  READ_WRITE 
+GO
